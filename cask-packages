@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# created by mzq
+
+while getopts f: opt; do
+	case $opt in
+		f) file=$OPTARG ;;
+	esac
+done
+
+if [ -z "$file" ]; then
+	brew cask ls -1
+else
+	for line in $(cat "$file"); do
+		brew cask install "$line"
+	done
+fi
